@@ -20,6 +20,6 @@ export interface ButtonProps {
  */
 export class Button extends React.Component<ButtonProps> {
   render() {
-    return <button type='button' className='osio-widgets-Button' {...this.props} >{this.props.title}</button>;
+    return <button type='button' className='btn btn-primary osio-widgets-Button' {...this.props} >{this.props.title}</button>;
   }
 }
