@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    ButtonComponent.clickEvent.subscribe(val => this.updateCount());
     ButtonComponent.initialize(this.getProps());
   }
 
