@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonComponent } from './react-components/button.component';
+import { ButtonProps } from './react-components/button';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +8,22 @@ import { ButtonComponent } from './react-components/button.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  text = 'Click Me!';
+  title = 'Click Me!';
   count = 0;
 
-  props = {
-    title: this.text,
-    onClick: this.updateCount
-  };
+  protected getProps(): ButtonProps {
+    return {
+      title: this.title,
+      onClick: this.updateCount
+    };
+  }
 
   ngOnInit() {
-    ButtonComponent.initialize(this.props);
+    ButtonComponent.initialize(this.getProps());
+  }
+
+  onChange() {
+    ButtonComponent.initialize(this.getProps());
   }
 
   updateCount() {
