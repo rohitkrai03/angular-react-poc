@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-react/core": "^0.4.9",
     "@angular/animations": "^6.1.0",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
@@ -21,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@types/react": "^16.7.3",
+    "@types/react-dom": "^16.0.10",
     "core-js": "^2.5.4",
     "patternfly": "^3.57.0",
     "patternfly-ng": "^4.5.1",

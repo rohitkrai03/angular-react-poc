@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { Button } from './button';
-import { Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export class ButtonComponent {

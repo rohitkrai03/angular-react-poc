@@ -31,3 +31,9 @@ export class AppComponent implements OnInit {
     this.count++;
   }
 }
+
+/**
+ * const template = fs.readFileSync(path.join(__dirname, ‘./pluginExtensions.template.hbs’), ‘utf8’);
+ * const rendered = Mustache.render(template, theDataToTheTemplate);
+ * reflect Metadata
+ */

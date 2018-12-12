@@ -9,5 +9,7 @@
     <input [(ngModel)]="title" (ngModelChange)="onChange($event)">
   </div>
   <div id="react-button"></div>
+  <hr>
+  <app-button [title]="title" (buttonClick)="updateCount()" ></app-button>
 </div>
 
