@@ -8,8 +8,7 @@
   <div class="row padding-bottom-10">
     <input [(ngModel)]="title" (ngModelChange)="onChange($event)">
   </div>
-  <div id="react-button"></div>
   <hr>
-  <app-button [title]="title" (buttonClick)="updateCount()" ></app-button>
+  <app-button [title]="title" (onClick)="updateCount()" ></app-button>
 </div>
 

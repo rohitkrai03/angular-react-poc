@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ButtonProps } from './button';
+import { ButtonProps } from '../react-components/button';
 
 @Component({
   selector: 'app-button',
@@ -21,8 +21,9 @@ import { ButtonProps } from './button';
       #reactNode
       [title]="title"
       [type]="type"
-      [click]="onClickHandler"
+      (onClick)="onClickHandler($event)"
       >
+      <ReactContent><ng-content></ng-content></ReactContent>
     </Button>
   `,
   styles: ['react-renderer'],
@@ -37,7 +38,8 @@ export class ButtonComponent extends ReactWrapperComponent<ButtonComponent> {
   @Input()
   type?: ButtonProps['type'];
 
-  @Output() buttonClick = new EventEmitter<void>();
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() readonly onClick = new EventEmitter<MouseEvent>();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);
@@ -46,7 +48,7 @@ export class ButtonComponent extends ReactWrapperComponent<ButtonComponent> {
     this.onClickHandler = this.onClickHandler.bind(this);
   }
 
-  onClickHandler() {
-    this.buttonClick.emit();
+  onClickHandler(ev?: React.MouseEvent) {
+    this.onClick.emit(ev.nativeEvent);
   }
 }
