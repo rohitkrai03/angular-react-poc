@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ButtonProps } from '../react-components/button';
+import { IButtonProps } from '../react-components/button';
 
 @Component({
   selector: 'app-button',
@@ -29,14 +29,14 @@ import { ButtonProps } from '../react-components/button';
   styles: ['react-renderer'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent extends ReactWrapperComponent<ButtonComponent> {
+export class ButtonComponent extends ReactWrapperComponent<IButtonProps> {
   @ViewChild('reactNode')
   protected reactNodeRef: ElementRef;
 
   @Input()
-  title: ButtonProps['title'];
+  title: IButtonProps['title'];
   @Input()
-  type?: ButtonProps['type'];
+  type?: IButtonProps['type'];
 
   // tslint:disable-next-line:no-output-on-prefix
   @Output() readonly onClick = new EventEmitter<MouseEvent>();
