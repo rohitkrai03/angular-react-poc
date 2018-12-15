@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { IButtonProps } from '../react-components/button';
+import { IButtonProps } from '../react-components/Button';
 
 @Component({
   selector: 'app-button',

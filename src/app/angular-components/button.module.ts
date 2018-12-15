@@ -1,7 +1,7 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Button } from '../react-components/button';
+import { Button } from '../react-components/Button';
 import { ButtonComponent } from './button.component';
 
 const components = [ButtonComponent];

@@ -19,7 +19,7 @@ readdir(
   dirSettings,
   (file) => {
     const componentMeta = reactDocgenTs.parse(file.fullPath)[0];
-    componentMeta.importPath = file.path.replace('.tsx', '');
+    componentMeta.importPath = file.parentDir;
     const renderedModule = compiledModuleTemplate(componentMeta);
     fs.writeFileSync(
       path.join(__dirname, `./angular-components/${componentMeta.displayName.toLowerCase()}.module.ts`),
