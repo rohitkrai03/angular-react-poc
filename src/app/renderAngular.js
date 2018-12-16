@@ -2,18 +2,15 @@ const handlebars = require('Handlebars');
 const path = require('path');
 const fs = require('fs');
 const reactDocgenTs = require('react-docgen-typescript');
-const readdir = require('readdirp');
-
-handlebars.registerHelper('lowerCase', function(options) {
-  return options.fn(this).toLowerCase();
-});
+const readDir = require('readdirp');
+const mkDir = require('mkdirp');
 
 const moduleTemplate = fs.readFileSync(path.join(__dirname, './templates/ng-module.hbs'), 'utf8');
 const compiledModuleTemplate = handlebars.compile(moduleTemplate);
 const componentTemplate = fs.readFileSync(path.join(__dirname, './templates/ng-component.hbs'), 'utf8');
 const compiledComponentTemplate = handlebars.compile(componentTemplate);
 
-const dirSettings = {
+const readDirSettings = {
   root: './src/app',
   // Filter files with js and json extension
   fileFilter: [ '*.tsx' ],
@@ -21,24 +18,42 @@ const dirSettings = {
   directoryFilter: [ '!angular-react-components' ],
 }
 
-readdir(
-  dirSettings,
+readDir(
+  readDirSettings,
   (fileMeta) => {
     const componentMeta = reactDocgenTs.parse(fileMeta.fullPath)[0];
     const context = buildComponentContext(fileMeta, componentMeta);
-    const renderedModule = compiledModuleTemplate(context);
-    fs.writeFileSync(
-      path.join(__dirname, `./angular-components/${context.name}.module.ts`),
-      renderedModule
-    )
-    const renderedComponent = compiledComponentTemplate(context);
-    fs.writeFileSync(
-      path.join(__dirname, `./angular-components/${context.name}.component.ts`),
-      renderedComponent
-    )
+    renderComponent(context);
+    renderModule(context);
   },
   () => {}
 );
+
+function renderComponent(context) {
+  const componentPath = path.join(
+    __dirname,
+    `./angular-components/${context.name}/${context.name}.component.ts`
+  )
+  const renderedComponent = compiledComponentTemplate(context);
+  writeFile(componentPath, renderedComponent);
+}
+
+function renderModule(context) {
+  const renderedModule = compiledModuleTemplate(context);
+  const modulePath = path.join(
+    __dirname,
+    `./angular-components/${context.name}/${context.name}.module.ts`
+  )
+  writeFile(modulePath, renderedModule);
+}
+
+function writeFile(filePath, contents) {
+  mkDir(path.dirname(filePath), function (err) {
+    if (err) return;
+
+    fs.writeFileSync(filePath, contents);
+  });
+}
 
 function buildComponentContext(fileMeta, componentMeta) {
   const context = {};
@@ -64,4 +79,3 @@ function buildComponentContext(fileMeta, componentMeta) {
   }
   return context;
 }
-

@@ -26,6 +26,7 @@
     "@types/react-dom": "^16.0.10",
     "core-js": "^2.5.4",
     "handlebars": "^4.0.12",
+    "mkdirp": "^0.5.1",
     "mustache": "^3.0.1",
     "patternfly": "^3.57.0",
     "patternfly-ng": "^4.5.1",

@@ -10,7 +10,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ButtonProps } from '../react-components/Button';
+import { ButtonProps } from '../../react-components/Button';
 
 @Component({
   selector: 'app-button',
@@ -18,8 +18,8 @@ import { ButtonProps } from '../react-components/Button';
   template: `
     <Button
       #reactNode
-      [children]="children""
-      [type]="type""
+      [children]="children"
+      [type]="type"
       (onClick)="onClickHandler($event)"
       >
       <ReactContent><ng-content></ng-content></ReactContent>

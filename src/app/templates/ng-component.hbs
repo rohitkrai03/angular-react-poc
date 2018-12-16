@@ -10,7 +10,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { {{displayName}}Props } from '../{{importPath}}';
+import { {{displayName}}Props } from '../../{{importPath}}';
 
 @Component({
   selector: 'app-{{name}}',
@@ -19,7 +19,7 @@ import { {{displayName}}Props } from '../{{importPath}}';
     <{{displayName}}
       #reactNode
       {{#each inputProps}}
-      [{{this.name}}]="{{this.name}}""
+      [{{this.name}}]="{{this.name}}"
       {{/each}}
       {{#each outputProps}}
       ({{this.name}})="{{this.name}}Handler($event)"
