@@ -21,6 +21,11 @@ const readDirSettings = {
   directoryFilter: [ '!angular-react-components' ],
 }
 
+const indexFileStream = fs.createWriteStream(
+  path.join(__dirname, './angular-components/index.ts'),
+  { flags:'a' }
+);
+
 readDir(
   readDirSettings,
   (fileMeta) => {
@@ -29,6 +34,7 @@ readDir(
     renderComponent(context);
     renderModule(context);
     renderIndex(context);
+    indexFileStream.write(`export * from './${context.name}';\n`);
   },
   () => {}
 );
