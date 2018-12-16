@@ -5,10 +5,13 @@ const reactDocgenTs = require('react-docgen-typescript');
 const readDir = require('readdirp');
 const mkDir = require('mkdirp');
 
-const moduleTemplate = fs.readFileSync(path.join(__dirname, './templates/ng-module.hbs'), 'utf8');
-const compiledModuleTemplate = handlebars.compile(moduleTemplate);
 const componentTemplate = fs.readFileSync(path.join(__dirname, './templates/ng-component.hbs'), 'utf8');
 const compiledComponentTemplate = handlebars.compile(componentTemplate);
+const moduleTemplate = fs.readFileSync(path.join(__dirname, './templates/ng-module.hbs'), 'utf8');
+const compiledModuleTemplate = handlebars.compile(moduleTemplate);
+const indexTemplate = fs.readFileSync(path.join(__dirname, './templates/ng-index.hbs'), 'utf8');
+const compiledIndexTemplate = handlebars.compile(indexTemplate);
+
 
 const readDirSettings = {
   root: './src/app',
@@ -25,6 +28,7 @@ readDir(
     const context = buildComponentContext(fileMeta, componentMeta);
     renderComponent(context);
     renderModule(context);
+    renderIndex(context);
   },
   () => {}
 );
@@ -33,7 +37,7 @@ function renderComponent(context) {
   const componentPath = path.join(
     __dirname,
     `./angular-components/${context.name}/${context.name}.component.ts`
-  )
+  );
   const renderedComponent = compiledComponentTemplate(context);
   writeFile(componentPath, renderedComponent);
 }
@@ -43,8 +47,17 @@ function renderModule(context) {
   const modulePath = path.join(
     __dirname,
     `./angular-components/${context.name}/${context.name}.module.ts`
-  )
+  );
   writeFile(modulePath, renderedModule);
+}
+
+function renderIndex(context) {
+  const renderedIndex = compiledIndexTemplate(context);
+  const indexPath = path.join(
+    __dirname,
+    `./angular-components/${context.name}/index.ts`
+  );
+  writeFile(indexPath, renderedIndex); 
 }
 
 function writeFile(filePath, contents) {
