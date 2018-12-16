@@ -18,8 +18,8 @@ import { ButtonProps } from '../react-components/Button';
   template: `
     <Button
       #reactNode
-      [children]="children"
-      [type]="type"
+      [children]="children""
+      [type]="type""
       (onClick)="onClickHandler($event)"
       >
       <ReactContent><ng-content></ng-content></ReactContent>
@@ -29,15 +29,13 @@ import { ButtonProps } from '../react-components/Button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent extends ReactWrapperComponent<ButtonProps> {
-  @ViewChild('reactNode')
-  protected reactNodeRef: ElementRef;
+  @ViewChild('reactNode') protected reactNodeRef: ElementRef;
 
   @Input() children: ButtonProps['children'];
-
-  @Input() type?: ButtonProps['type'];
+  @Input() type: ButtonProps['type'];
 
   // tslint:disable-next-line:no-output-on-prefix
-  @Output() readonly onClick = new EventEmitter<MouseEvent>();
+  @Output() readonly onClick = new EventEmitter();
 
   constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2) {
     super(elementRef, changeDetectorRef, renderer);
@@ -46,7 +44,7 @@ export class ButtonComponent extends ReactWrapperComponent<ButtonProps> {
     this.onClickHandler = this.onClickHandler.bind(this);
   }
 
-  onClickHandler(ev?: React.MouseEvent) {
+  onClickHandler(ev?) {
     this.onClick.emit(ev.nativeEvent);
   }
 }

@@ -1,10 +1,10 @@
 import { registerElement } from '@angular-react/core';
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { {{ displayName }} } from '../{{ importPath }}';
-import { {{ displayName }}Component } from './button.component';
+import { {{displayName}} } from '../{{importPath}}';
+import { {{displayName}}Component } from './{{name}}.component';
 
-const components = [{{ displayName }}Component];
+const components = [{{displayName}}Component];
 
 @NgModule({
   imports: [CommonModule],
@@ -12,9 +12,9 @@ const components = [{{ displayName }}Component];
   exports: components,
   schemas: [NO_ERRORS_SCHEMA],
 })
-export class {{ displayName }}Module {
+export class {{displayName}}Module {
   constructor() {
     // Add any React elements to the registry (used by the renderer).
-    registerElement('{{ displayName }}', () => {{ displayName }});
+    registerElement('{{displayName}}', () => {{displayName}});
   }
 }

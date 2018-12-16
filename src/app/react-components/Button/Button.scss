@@ -1,0 +1,13 @@
+.osio-widgets-Button {
+    border: 0;
+    background: #cc0000;
+    color: #ffffff;
+    min-height: 2rem;
+    padding: 0 1rem;
+    cursor: pointer;
+  
+    &:hover {
+      background: #aa0000;
+    }
+  }
+  

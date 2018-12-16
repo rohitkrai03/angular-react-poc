@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AngularReactBrowserModule } from '@angular-react/core';
-import { ButtonModule } from './angular-react-components/button.module';
+import { ButtonModule } from './angular-components/button.module';
 
 @NgModule({
   declarations: [

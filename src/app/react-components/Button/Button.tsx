@@ -1,12 +1,16 @@
 import * as React from 'react';
+import './Button.scss';
 
-export interface IButtonProps {
+export interface ButtonProps {
+  /**
+   * Button content.
+   */
+  children: React.ReactChild;
+
   /**
    * The button type.
    */
   type?: 'button' | 'submit' | 'reset';
-
-  title: string;
 
   /**
    * Callback when button is clicked.
@@ -18,8 +22,8 @@ export interface IButtonProps {
 /**
  * Button component description.
  */
-export class Button extends React.Component<IButtonProps> {
+export class Button extends React.Component<ButtonProps> {
   render() {
-    return <button type='button' className='btn btn-primary osio-widgets-Button' {...this.props} >{this.props.title}</button>;
+    return <button className='osio-widgets-Button' {...this.props} ></button>;
   }
 }
